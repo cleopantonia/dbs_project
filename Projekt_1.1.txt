@@ -1,0 +1,124 @@
+Last login: Thu May 25 19:31:16 on console
+EMP:~ Eva$ psql postgres -U postgres
+psql (9.6.2)
+Type "help" for help.
+
+postgres=# \list
+                                List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    | Access privileges 
+-----------+----------+----------+-------------+-------------+-------------------
+ dbs       | postgres | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 | 
+ election  | Eva      | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 | 
+ postgres  | Eva      | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 | 
+ template0 | Eva      | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 | =c/Eva           +
+           |          |          |             |             | Eva=CTc/Eva
+ template1 | Eva      | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 | =c/Eva           +
+           |          |          |             |             | Eva=CTc/Eva
+(5 rows)
+
+postgres=# \c election
+You are now connected to database "election" as user "postgres".
+election=# CREATE SCHEMA e_schema;
+CREATE SCHEMA
+election=# CREATE TABLE e_schema.tweet(
+election(# t_id 
+
+election(# ^C
+election=# CREATE TABLE e_schema.tweet(
+election(# t_id   INT PRIMARY KEY   NOT NULL
+election(# \c election^C
+election=# CREATE TABLE e_schema.tweet(
+election(# t_id   INT PRIMARY KEY  NOT NULL,
+election(# handle TEXT             NOT NULL,
+election(# inhalt TEXT             NOT NULL,
+election(# zeit   TIMESTAMP        NOT NULL,
+election(# favorite_count INT      NOT NULL,
+election(# retweet_count  INT      NOT NULL,
+election(# in_reply_to    TEXT,
+election(# source_url     TEXT);
+CREATE TABLE
+election=# CREATE TABLE e_schema.hashtag(
+election(# h_id   INT  PRIMARY KEY   NOT NULL,
+election(# name   TEXT               NOT NULL,
+election(# abs_hauf INT);
+CREATE TABLE
+election=# CREATE TABLE e_schema.enthaelt(
+election(# f_t_id  INT references tweet(t_id),
+election(# f_h_id  INT references hashtag(h_id),
+election(# PRIMARY KEY(f_t_id, f_h_id));
+ERROR:  relation "tweet" does not exist
+election=# CREATE TABLE e_schema.enthaelt(
+f_t_id  INT references e_schema.tweet(t_id),
+f_h_id  INT references e_schema.hashtag(h_id),
+PRIMARY KEY(f_t_id, f_h_id));
+CREATE TABLE
+election=# SELECT * FROM e_schema.tweet;
+ t_id | handle | inhalt | zeit | favorite_count | retweet_count | in_reply_to | source_url 
+------+--------+--------+------+----------------+---------------+-------------+------------
+(0 rows)
+
+election=# SELECT * FROM e_schema.hashtag;
+ h_id | name | abs_hauf 
+------+------+----------
+(0 rows)
+
+election=# SELECT * FROM e_schema.enthaelt;
+ f_t_id | f_h_id 
+--------+--------
+(0 rows)
+
+election=# \dt e_schema.tweet;
+          List of relations
+  Schema  | Name  | Type  |  Owner   
+----------+-------+-------+----------
+ e_schema | tweet | table | postgres
+(1 row)
+
+election=# \d e_schema.tweet;
+                  Table "e_schema.tweet"
+     Column     |            Type             | Modifiers 
+----------------+-----------------------------+-----------
+ t_id           | integer                     | not null
+ handle         | text                        | not null
+ inhalt         | text                        | not null
+ zeit           | timestamp without time zone | not null
+ favorite_count | integer                     | not null
+ retweet_count  | integer                     | not null
+ in_reply_to    | text                        | 
+ source_url     | text                        | 
+Indexes:
+    "tweet_pkey" PRIMARY KEY, btree (t_id)
+Referenced by:
+    TABLE "e_schema.enthaelt" CONSTRAINT "enthaelt_f_t_id_fkey" FOREIGN KEY (f_t_id) REFERENCES e_schema.tweet(t_id)
+
+election=# \d e_schema.hashtag;
+    Table "e_schema.hashtag"
+  Column  |  Type   | Modifiers 
+----------+---------+-----------
+ h_id     | integer | not null
+ name     | text    | not null
+ abs_hauf | integer | 
+Indexes:
+    "hashtag_pkey" PRIMARY KEY, btree (h_id)
+Referenced by:
+    TABLE "e_schema.enthaelt" CONSTRAINT "enthaelt_f_h_id_fkey" FOREIGN KEY (f_h_id) REFERENCES e_schema.hashtag(h_id)
+
+election=# \d e_schema.enthaelt;
+  Table "e_schema.enthaelt"
+ Column |  Type   | Modifiers 
+--------+---------+-----------
+ f_t_id | integer | not null
+ f_h_id | integer | not null
+Indexes:
+    "enthaelt_pkey" PRIMARY KEY, btree (f_t_id, f_h_id)
+Foreign-key constraints:
+    "enthaelt_f_h_id_fkey" FOREIGN KEY (f_h_id) REFERENCES e_schema.hashtag(h_id)
+    "enthaelt_f_t_id_fkey" FOREIGN KEY (f_t_id) REFERENCES e_schema.tweet(t_id)
+
+election=# 7d
+election-# \d
+No relations found.
+election-# \dt
+No relations found.
+election-# \q
+EMP:~ Eva$ 
