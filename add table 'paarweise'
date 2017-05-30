@@ -1,0 +1,44 @@
+Last login: Tue May 30 09:16:50 on ttys000
+EMP:~ Eva$ psql postgres -U postgres
+psql (9.6.2)
+Type "help" for help.
+
+postgres=# \c election
+You are now connected to database "election" as user "postgres".
+election=# CREATE TABLE e_schema.paarweise(
+election(# p_hauf   INT,
+election(# f_h_id1  INT references e_schema.hashtag(h_id),
+election(# f_h_id2  INT references e_schema.hashtag(h_id),
+election(# PRIMARY KEY (f_h_id1, f_h_id2));
+CREATE TABLE
+election=# \d election
+Did not find any relation named "election".
+election=# \d e_schema
+Did not find any relation named "e_schema".
+election=# \d e_schema.paarweise
+  Table "e_schema.paarweise"
+ Column  |  Type   | Modifiers 
+---------+---------+-----------
+ p_hauf  | integer | 
+ f_h_id1 | integer | not null
+ f_h_id2 | integer | not null
+Indexes:
+    "paarweise_pkey" PRIMARY KEY, btree (f_h_id1, f_h_id2)
+Foreign-key constraints:
+    "paarweise_f_h_id1_fkey" FOREIGN KEY (f_h_id1) REFERENCES e_schema.hashtag(h_id)
+    "paarweise_f_h_id2_fkey" FOREIGN KEY (f_h_id2) REFERENCES e_schema.hashtag(h_id)
+
+election=# \d e_schema.paarweise;
+  Table "e_schema.paarweise"
+ Column  |  Type   | Modifiers 
+---------+---------+-----------
+ p_hauf  | integer | 
+ f_h_id1 | integer | not null
+ f_h_id2 | integer | not null
+Indexes:
+    "paarweise_pkey" PRIMARY KEY, btree (f_h_id1, f_h_id2)
+Foreign-key constraints:
+    "paarweise_f_h_id1_fkey" FOREIGN KEY (f_h_id1) REFERENCES e_schema.hashtag(h_id)
+    "paarweise_f_h_id2_fkey" FOREIGN KEY (f_h_id2) REFERENCES e_schema.hashtag(h_id)
+
+election=# 
