@@ -1,3 +1,4 @@
+# Befehle, die ein file speichern oder ein table in die Datenbank importieren, wurden auskommentiert
 import pandas as pd
 import numpy as np
 
