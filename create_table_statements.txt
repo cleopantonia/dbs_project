@@ -151,4 +151,17 @@ Foreign-key constraints:
     "paarweise_f_h_id1_fkey" FOREIGN KEY (f_h_id1) REFERENCES e_schema.hashtag(h_id)
     "paarweise_f_h_id2_fkey" FOREIGN KEY (f_h_id2) REFERENCES e_schema.hashtag(h_id)
 
-election=# 
+// es wurde ein neues Attribut c_id als neuer und einziger primary key hinzugefügt (s.
+election=# \d e_schema.enthaelt
+  Table "e_schema.enthaelt"
+ Column |  Type   | Modifiers 
+--------+---------+-----------
+ f_t_id | integer | not null
+ f_h_id | integer | not null
+ c_id   | integer | not null
+Indexes:
+    "enthaelt_pkey" PRIMARY KEY, btree (c_id)
+Foreign-key constraints:
+    "enthaelt_f_h_id_fkey" FOREIGN KEY (f_h_id) REFERENCES e_schema.hashtag(h_id)
+    "enthaelt_f_t_id_fkey" FOREIGN KEY (f_t_id) REFERENCES e_schema.tweet(t_id)
+
