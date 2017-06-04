@@ -151,7 +151,7 @@ Foreign-key constraints:
     "paarweise_f_h_id1_fkey" FOREIGN KEY (f_h_id1) REFERENCES e_schema.hashtag(h_id)
     "paarweise_f_h_id2_fkey" FOREIGN KEY (f_h_id2) REFERENCES e_schema.hashtag(h_id)
 
-// es wurde ein neues Attribut c_id als neuer und einziger primary key hinzugefügt (s.
+// es wurde ein neues Attribut c_id als neuer und einziger primary key hinzugefügt (s. election.sql)
 election=# \d e_schema.enthaelt
   Table "e_schema.enthaelt"
  Column |  Type   | Modifiers 
