@@ -2,8 +2,9 @@
 Projekt fuer Datenbanksysteme
 
 Für die 2. Iteration:
- - [Datenbankschema erstellen].sql Datei in dem CREATE TABLE Statements mit allen Constraints stehen
+ 1. [Datenbankschema erstellen].sql Datei in dem CREATE TABLE Statements mit allen Constraints stehen
  -> Befehle in election.sql
- -> Befehle ausgefuehrt in Projekt_1.1.txt
- - [Datenbereinigung] Programm, das fehlerhafte Datensätze repariert oder verwirft
- - [Datenimport] Programm, das Daten importiert
+ -> Befehle ausgefuehrt in create_table_statements.txt
+ 2. [Datenbereinigung] Programm, das fehlerhafte Datensätze repariert oder verwirft
+ 3. [Datenimport] Programm, das Daten importiert
+ -> 2. und 3. in Datenbereinigung und -import.ipython
