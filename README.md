@@ -8,4 +8,4 @@ Für die 2. Iteration:
  2. [Datenbereinigung] Programm, das fehlerhafte Datensätze repariert oder verwirft
  3. [Datenimport] Programm, das Daten importiert
  
- -> 2. und 3. in Datenbereinigung und -import.ipython
+ -> 2. und 3. in Datenbereinigung und -import.ipynb
