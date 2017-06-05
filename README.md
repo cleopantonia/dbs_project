@@ -7,4 +7,4 @@ Für die 2. Iteration:
  -> Befehle ausgefuehrt in create_table_statements.txt
  2. [Datenbereinigung] Programm, das fehlerhafte Datensätze repariert oder verwirft
  3. [Datenimport] Programm, das Daten importiert
- -> 2. und 3. in Datenbereinigung und -import.ipython
+ \n -> 2. und 3. in Datenbereinigung und -import.ipython
