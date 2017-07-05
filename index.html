@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+	<p><b>Ergebnis des k-means Algorithmus mit k=6</b></p>
+	<IMG SRC="Plot_Kmeans.png" ALT="K-Means" WIDTH=640 HEIGHT=418>
+	<p><b>Waehle im Drop-Down Menue einen Hashtag aus, um den Verlauf des Hashtags ueber die Zeit anzuzeigen</b></p>
+  <script src="http://d3js.org/d3.v3.js"></script>
+  <script>
+  d3.csv("hashtag_dataframe.csv", function(error, data) {
+    var select = d3.select("body")
+      .append("div")
+      .append("select")
+
+    select
+      .on("change", function(d) {
+        var value = d3.select(this).property("value");
+        alert(value);
+      });
+
+    select.selectAll("option")
+      .data(data)
+      .enter()
+        .append("option")
+        .attr("value", function (d) { return d.value; })
+        .text(function (d) { return d.label; }); // .text gibt text zurueck
+		//<IMG SRC="plot_"+String(d.label)+".png" ALT="Picture" WIDTH=640 HEIGHT=418>
+  });
+  </script>
+</body>
+</html>
